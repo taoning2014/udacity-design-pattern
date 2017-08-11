@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Lesson 1 </title>
+    </head>
+    <body>
+        <img id="catImg" src="/img/cat.jpg" alt="car picture">
+        <p id="counterDisplay"></p>
+        <script>
+            onload = function() {
+                const carImgElem = document.getElementById('catImg');
+                const counterElem = document.getElementById('counterDisplay');
+                let counter = 0;
+
+                carImgElem.addEventListener('click', () => {
+                    counterElem.innerHTML = counter++;
+                });
+            }
+        </script>
+    </body>
+</html>
