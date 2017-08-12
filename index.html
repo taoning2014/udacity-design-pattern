@@ -4,17 +4,39 @@
         <title> Lesson 1 </title>
     </head>
     <body>
-        <img id="catImg" src="/img/cat.jpg" alt="car picture">
-        <p id="counterDisplay"></p>
+        <div id="catContainer"></div>
         <script>
             onload = function() {
-                const carImgElem = document.getElementById('catImg');
-                const counterElem = document.getElementById('counterDisplay');
-                let counter = 0;
+                /**
+                 * Cat factory. Create and attached cat to DOM, also add click listener
+                 * @type {function}
+                 * @param {String} name
+                 * @param {String} imgSrc
+                 * @param {String} count - Initial counter value
+                 */
+                function createCat(name = 'tao' , imgSrc = '/img/cat.jpg', count = 0) {
+                    const containerElem = document.createElement('div');
+                    const nameElem = document.createElement('p');
+                    const imgElem = document.createElement('img');
+                    const counterElem = document.createElement('p');
+                    counterElem.innerHTML = count;
 
-                carImgElem.addEventListener('click', () => {
-                    counterElem.innerHTML = counter++;
-                });
+                    nameElem.innerHTML = name;
+                    imgElem.alt = `cat image with the car name: ${name}`
+                    imgElem.src = imgSrc;
+
+                    containerElem.appendChild(nameElem);
+                    containerElem.appendChild(imgElem);
+                    containerElem.appendChild(counterElem);
+                    document.body.appendChild(containerElem);
+
+                    imgElem.addEventListener('click', () => {
+                        counterElem.innerHTML = count++;
+                    });
+                }
+
+                createCat();
+                createCat('ning', '/img/cat-1.jpg', 10);
             }
         </script>
     </body>
