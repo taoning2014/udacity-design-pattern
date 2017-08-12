@@ -1,4 +1,8 @@
 $(function(){
+    function _forMatDate(dateNum) {
+      const date = new Date(parseInt(dateNum, 10));
+      return date.toLocaleString();
+    }
 
     var model = {
         init: function() {
@@ -20,7 +24,8 @@ $(function(){
     var octopus = {
         addNewNote: function(noteStr) {
             model.add({
-                content: noteStr
+                content: noteStr,
+                createDate: Date.now()
             });
             view.render();
         },
@@ -51,9 +56,7 @@ $(function(){
         render: function(){
             var htmlStr = '';
             octopus.getNotes().forEach(function(note){
-                htmlStr += '<li class="note">'+
-                        note.content +
-                    '</li>';
+                htmlStr += `<li class="note"> ${note.content} <span class="note-date"> ${_forMatDate(note.createDate)}</span></li>`;
             });
             this.noteList.html( htmlStr );
         }
